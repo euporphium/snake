@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div id="page">
+      <header id="header" role="banner">
+        {/*The #header container houses the product's application header.It may optionally include any banner notifications.*/}
       </header>
+      <div id="content">
+        {/*The #content container houses various page layout, navigation, and content patterns.*/}
+      </div>
+      <footer id="footer" role="contentinfo">
+        {/*The #footer should include content like the product name, version, support links, etc.*/}
+      </footer>
     </div>
   );
 }
