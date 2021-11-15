@@ -1,17 +1,32 @@
 import React from 'react';
+import {
+  Routes,
+  Route, Link,
+} from 'react-router-dom';
+import SnakeGame from './components/Snake/SnakeGame';
+import NonogramGame from './components/Nonogram/NonogramGame';
+import './App.scss';
 
 function App() {
   return (
-    <div id="page">
-      <header id="header" role="banner">
-        {/*The #header container houses the product's application header.It may optionally include any banner notifications.*/}
+    <div className="app-container">
+      <header>
+        <span>Games</span>
+        <nav>
+          <ul>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/snake">Snake</Link></li>
+            <li><Link to="/nonogram">Nonogram</Link></li>
+          </ul>
+        </nav>
       </header>
-      <div id="content">
-        {/*The #content container houses various page layout, navigation, and content patterns.*/}
-      </div>
-      <footer id="footer" role="contentinfo">
-        {/*The #footer should include content like the product name, version, support links, etc.*/}
-      </footer>
+      <main>
+        <Routes>
+          <Route path="/" element={<></>}/>
+          <Route path="/snake" element={<SnakeGame/>}/>
+          <Route path="/nonogram" element={<NonogramGame/>}/>
+        </Routes>
+      </main>
     </div>
   );
 }

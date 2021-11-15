@@ -1,0 +1,40 @@
+#snake-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  flex: 1;
+  border-bottom: 1px solid lime;
+  border-top: 1px solid lime;
+
+  h1 {
+    font-size: 3em;
+    margin: 0.5em;
+  }
+
+  .snake-game__board {
+    .row {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .cell {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 2em;
+      width: 2em;
+      border: 1px solid white;
+
+      &.cell--food {
+        background: orangered;
+        color: #202124;
+      }
+
+      &.cell--snake {
+        background: lime;
+        color: #202124;
+      }
+    }
+  }
+}
