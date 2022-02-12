@@ -16,6 +16,7 @@ function SnakeGame({ debug = false } = {}) {
 
   const [foodCellNums, setFoodCellNums] = useState(new Set([rand.next().value]));
   const [snakeCellNums, setSnakeCellNums] = useState(snake.occupiedCellNums);
+  const [isRunning, setIsRunning] = useState(true);
 
   const handleKeydown = e => {
     const getDirectionFromKey = key => {
@@ -38,10 +39,10 @@ function SnakeGame({ debug = false } = {}) {
 
   useInterval(() => {
     moveSnake();
-  }, 1000 / FPS);
+  }, isRunning ? (1000 / FPS) : null);
 
   function endGame() {
-
+    setIsRunning(false);
   }
 
   function moveSnake() {

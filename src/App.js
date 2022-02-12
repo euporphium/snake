@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Routes,
-  Route, Link,
-} from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import SnakeGame from './components/Snake/SnakeGame';
 import NonogramGame from './components/Nonogram/NonogramGame';
 import './App.scss';
