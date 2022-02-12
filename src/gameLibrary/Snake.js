@@ -1,11 +1,3 @@
-// TODO where to put this? duplicated in SnakeGame
-const Direction = {
-  Up: 'UP',
-  Down: 'DOWN',
-  Left: 'LEFT',
-  Right: 'RIGHT',
-};
-
 class Node {
   constructor(value) {
     this.value = value;
@@ -29,7 +21,7 @@ export default class Snake {
     this.#head = node;
     this.#tail = node;
     this.#occupiedCellNums = new Set([node.value.cellNum]);
-    this.#direction = Direction.Right;
+    this.#direction = Snake.Direction.Right;
   }
 
   changeDirection(newDirection) {
@@ -61,11 +53,18 @@ export default class Snake {
   };
 
   #getNext = () => {
-    const rowDelta = this.#direction === Direction.Down ? 1 : this.#direction === Direction.Up ? -1 : 0;
-    const colDelta = this.#direction === Direction.Right ? 1 : this.#direction === Direction.Left ? -1 : 0;
+    const rowDelta = this.#direction === Snake.Direction.Down ? 1 : this.#direction === Snake.Direction.Up ? -1 : 0;
+    const colDelta = this.#direction === Snake.Direction.Right ? 1 : this.#direction === Snake.Direction.Left ? -1 : 0;
     return {
       tgtRow: this.#head.value.row + rowDelta,
       tgtCol: this.#head.value.col + colDelta,
     };
   };
 }
+
+Snake.Direction = {
+  Up: 'UP',
+  Down: 'DOWN',
+  Left: 'LEFT',
+  Right: 'RIGHT',
+};

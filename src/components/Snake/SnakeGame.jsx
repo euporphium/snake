@@ -9,14 +9,6 @@ const START_ROW = 2;
 const START_COLUMN = 2;
 const FPS = 5;
 
-// TODO where to put this? duplicated in Snake
-const Direction = {
-  Up: 'UP',
-  Down: 'DOWN',
-  Left: 'LEFT',
-  Right: 'RIGHT',
-};
-
 function SnakeGame({ debug = false } = {}) {
   const [rand] = useState(randomNumberGenerator(1, ROWS * COLUMNS));
   const [board] = useState(new GameBoard(ROWS, COLUMNS));
@@ -27,10 +19,10 @@ function SnakeGame({ debug = false } = {}) {
 
   const handleKeydown = e => {
     const getDirectionFromKey = key => {
-      if (key === 'ArrowUp') return Direction.Up;
-      if (key === 'ArrowRight') return Direction.Right;
-      if (key === 'ArrowDown') return Direction.Down;
-      if (key === 'ArrowLeft') return Direction.Left;
+      if (key === 'ArrowUp') return Snake.Direction.Up;
+      if (key === 'ArrowRight') return Snake.Direction.Right;
+      if (key === 'ArrowDown') return Snake.Direction.Down;
+      if (key === 'ArrowLeft') return Snake.Direction.Left;
       return '';
     };
 
