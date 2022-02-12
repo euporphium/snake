@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useSwipeable } from 'react-swipeable';
 import { randomNumberGenerator, useInterval } from '../../util';
 import { GameBoard, Snake } from '../../gameLibrary';
 import './Snake.scss';
@@ -18,11 +19,18 @@ function SnakeGame({ debug = false } = {}) {
   const [snakeCellNums, setSnakeCellNums] = useState(snake.occupiedCellNums);
   const [isRunning, setIsRunning] = useState(true);
 
+  const swipeableHandlers = useSwipeable({
+    onSwipedUp: () => snake.changeDirection(Snake.Direction.Up),
+    onSwipedRight: () => snake.changeDirection(Snake.Direction.Right),
+    onSwipedDown: () => snake.changeDirection(Snake.Direction.Down),
+    onSwipedLeft: () => snake.changeDirection(Snake.Direction.Left),
+  })
+
   const handleKeydown = e => {
     const getDirectionFromKey = key => {
       if (key === 'ArrowUp') return Snake.Direction.Up;
       if (key === 'ArrowRight') return Snake.Direction.Right;
-      if (key === 'ArrowDown') return Snake.Direction.Down;
+      if (key === 'ArrowDown') return Snake.Direction.Right;
       if (key === 'ArrowLeft') return Snake.Direction.Left;
       return '';
     };
@@ -82,7 +90,7 @@ function SnakeGame({ debug = false } = {}) {
   }
 
   return (
-    <div id="snake-game">
+    <div id="snake-game" {...swipeableHandlers}>
       <h1>Snake</h1>
       {debug && <button onClick={moveSnake}>Step</button>}
       <div className="snake-game__board">
