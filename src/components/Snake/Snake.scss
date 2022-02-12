@@ -13,6 +13,8 @@
   }
 
   .snake-game__board {
+    border: 1px solid white;
+
     .row {
       display: flex;
       flex-direction: row;
@@ -24,7 +26,6 @@
       align-items: center;
       height: 2em;
       width: 2em;
-      border: 1px solid white;
 
       &.cell--food {
         background: orangered;
