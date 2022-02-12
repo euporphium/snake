@@ -18,7 +18,14 @@ export default class GameBoard {
     }
   }
 
-  getCells = () => this.#board;
+  get rowCount() {
+    return this.#rowCount;
+  }
+
+  get colCount() {
+    return this.#colCount;
+  }
+
   get cells() {
     return this.#cells;
   }
