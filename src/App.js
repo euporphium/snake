@@ -19,7 +19,7 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<></>}/>
+          <Route path="/" element={<h2>Here be games</h2>}/>
           <Route path="/snake" element={<SnakeGame/>}/>
           <Route path="/nonogram" element={<NonogramGame/>}/>
         </Routes>

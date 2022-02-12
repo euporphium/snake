@@ -24,13 +24,14 @@ function SnakeGame({ debug = false } = {}) {
     onSwipedRight: () => snake.changeDirection(Snake.Direction.Right),
     onSwipedDown: () => snake.changeDirection(Snake.Direction.Down),
     onSwipedLeft: () => snake.changeDirection(Snake.Direction.Left),
+    preventDefaultTouchmoveEvent: true,
   })
 
   const handleKeydown = e => {
     const getDirectionFromKey = key => {
       if (key === 'ArrowUp') return Snake.Direction.Up;
       if (key === 'ArrowRight') return Snake.Direction.Right;
-      if (key === 'ArrowDown') return Snake.Direction.Right;
+      if (key === 'ArrowDown') return Snake.Direction.Down;
       if (key === 'ArrowLeft') return Snake.Direction.Left;
       return '';
     };
@@ -69,11 +70,10 @@ function SnakeGame({ debug = false } = {}) {
 
       if (foodCellNums.has(tgtCellNum)) {
         setFoodCellNums(new Set([rand.next().value]));
-        return { row, col, cellNum: tgtCellNum, grow: true };
+        return { tgtCellNum, grow: true };
       }
 
-      // row col might be different if snake can wrap
-      return { row, col, cellNum: tgtCellNum, grow: false };
+      return { tgtCellNum, grow: false };
     });
     setSnakeCellNums(new Set(snake.occupiedCellNums));
   }

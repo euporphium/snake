@@ -38,19 +38,19 @@ export default class Snake {
 
   move(moveTo) {
     const { tgtRow, tgtCol } = this.#getNext();
-    const { row, col, cellNum, grow } = moveTo(tgtRow, tgtCol);
+    const { tgtCellNum, grow } = moveTo(tgtRow, tgtCol);
 
-    if (cellNum) {
-      this.#updateSnake({ row, col, cellNum }, grow);
+    if (tgtCellNum) {
+      this.#updateSnake({ tgtRow, tgtCol, tgtCellNum }, grow);
     }
   }
 
-  #updateSnake = ({ row, col, cellNum }, grow) => {
-    const next = new Node({ row, col, cellNum });
+  #updateSnake = ({ tgtRow, tgtCol, tgtCellNum }, grow) => {
+    const next = new Node({ row: tgtRow, col: tgtCol, cellNum: tgtCellNum });
 
     this.#head.next = next;
     this.#head = next;
-    this.#occupiedCellNums.add(cellNum);
+    this.#occupiedCellNums.add(tgtCellNum);
 
     if (!grow) {
       this.#occupiedCellNums.delete(this.#tail.value.cellNum);
