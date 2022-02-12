@@ -28,7 +28,9 @@ export default class Snake {
     this.#direction = newDirection;
   }
 
-  getOccupiedCellNums = () => this.#occupiedCellNums;
+  get occupiedCellNums() {
+    return this.#occupiedCellNums;
+  }
 
   move(moveTo) {
     const { tgtRow, tgtCol } = this.#getNext();

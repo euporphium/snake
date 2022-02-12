@@ -15,7 +15,7 @@ function SnakeGame({ debug = false } = {}) {
   const [snake] = useState(new Snake(board, START_ROW, START_COLUMN));
 
   const [foodCellNums, setFoodCellNums] = useState(new Set([rand.next().value]));
-  const [snakeCellNums, setSnakeCellNums] = useState(snake.getOccupiedCellNums());
+  const [snakeCellNums, setSnakeCellNums] = useState(snake.occupiedCellNums);
 
   const handleKeydown = e => {
     const getDirectionFromKey = key => {
@@ -66,7 +66,7 @@ function SnakeGame({ debug = false } = {}) {
       // row col might be different if snake can wrap
       return { row, col, cellNum: tgtCellNum, grow: false };
     });
-    setSnakeCellNums(new Set(snake.getOccupiedCellNums()));
+    setSnakeCellNums(new Set(snake.occupiedCellNums));
   }
 
   function getCellClass(cellNum) {
@@ -85,7 +85,7 @@ function SnakeGame({ debug = false } = {}) {
       <h1>Snake</h1>
       {debug && <button onClick={moveSnake}>Step</button>}
       <div className="snake-game__board">
-        {board.getCells().map((row, i) => (
+        {board.cells.map((row, i) => (
           <div key={i} className="row">
             {row.map((cellNum, j) => (
               <div key={j} className={getCellClass(cellNum)}>
