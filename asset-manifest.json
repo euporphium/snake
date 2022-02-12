@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/snake/static/css/main.c50f97bd.chunk.css",
-    "main.js": "/snake/static/js/main.52f38e1e.chunk.js",
-    "main.js.map": "/snake/static/js/main.52f38e1e.chunk.js.map",
+    "main.css": "/snake/static/css/main.47e172fc.chunk.css",
+    "main.js": "/snake/static/js/main.e93c7a92.chunk.js",
+    "main.js.map": "/snake/static/js/main.e93c7a92.chunk.js.map",
     "runtime-main.js": "/snake/static/js/runtime-main.92c0d3c8.js",
     "runtime-main.js.map": "/snake/static/js/runtime-main.92c0d3c8.js.map",
-    "static/js/2.c386d928.chunk.js": "/snake/static/js/2.c386d928.chunk.js",
-    "static/js/2.c386d928.chunk.js.map": "/snake/static/js/2.c386d928.chunk.js.map",
+    "static/js/2.6889471e.chunk.js": "/snake/static/js/2.6889471e.chunk.js",
+    "static/js/2.6889471e.chunk.js.map": "/snake/static/js/2.6889471e.chunk.js.map",
     "static/js/3.1c6d7bd5.chunk.js": "/snake/static/js/3.1c6d7bd5.chunk.js",
     "static/js/3.1c6d7bd5.chunk.js.map": "/snake/static/js/3.1c6d7bd5.chunk.js.map",
     "index.html": "/snake/index.html",
-    "static/css/main.c50f97bd.chunk.css.map": "/snake/static/css/main.c50f97bd.chunk.css.map",
-    "static/js/2.c386d928.chunk.js.LICENSE.txt": "/snake/static/js/2.c386d928.chunk.js.LICENSE.txt"
+    "static/css/main.47e172fc.chunk.css.map": "/snake/static/css/main.47e172fc.chunk.css.map",
+    "static/js/2.6889471e.chunk.js.LICENSE.txt": "/snake/static/js/2.6889471e.chunk.js.LICENSE.txt",
+    "static/media/game-over-svgrepo-com.642d6d29.svg": "/snake/static/media/game-over-svgrepo-com.642d6d29.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.92c0d3c8.js",
-    "static/js/2.c386d928.chunk.js",
-    "static/css/main.c50f97bd.chunk.css",
-    "static/js/main.52f38e1e.chunk.js"
+    "static/js/2.6889471e.chunk.js",
+    "static/css/main.47e172fc.chunk.css",
+    "static/js/main.e93c7a92.chunk.js"
   ]
 }
