@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { randomNumberGenerator, useInterval } from '../../util';
 import { GameBoard, Snake } from '../../gameLibrary';
@@ -27,7 +27,7 @@ function SnakeGame({ debug = false } = {}) {
     preventDefaultTouchmoveEvent: true,
   });
 
-  const handleKeydown = e => {
+  const handleKeydown = useCallback((e) => {
     const getDirectionFromKey = key => {
       if (key === 'ArrowUp') return Snake.Direction.Up;
       if (key === 'ArrowRight') return Snake.Direction.Right;
@@ -40,11 +40,11 @@ function SnakeGame({ debug = false } = {}) {
     if (!!newDirection) {
       snake.changeDirection(newDirection);
     }
-  };
+  }, [snake]);
 
   useEffect(() => {
     window.addEventListener('keydown', e => handleKeydown(e));
-  }, []);
+  }, [handleKeydown]);
 
   useInterval(() => {
     moveSnake();
