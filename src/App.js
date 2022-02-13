@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home/Home';
-import SnakeGame from './components/Snake/SnakeGame';
+import Snake from './components/Snake/Snake';
 import './App.scss';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
       </header>
       <Routes>
         <Route path="/" element={<Home/>}/>
-        <Route path="/snake" element={<SnakeGame/>}/>
+        <Route path="/snake" element={<Snake/>}/>
       </Routes>
     </div>
   );
