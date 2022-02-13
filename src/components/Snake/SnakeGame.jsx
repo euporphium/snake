@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
-import { randomNumberGenerator, useInterval } from '../../util';
+import FruitIcon from './FruitIcon/FruitIcon';
 import { GameBoard, Snake } from '../../gameLibrary';
+import { randomNumberGenerator, useInterval } from '../../util';
 import './Snake.scss';
 
 const ROWS = 10;
@@ -10,7 +11,7 @@ const START_ROW = 2;
 const START_COLUMN = 2;
 const FPS = 5;
 
-function SnakeGame({ debug = false } = {}) {
+function SnakeGame() {
   const [rand] = useState(randomNumberGenerator(1, ROWS * COLUMNS));
   const [board] = useState(new GameBoard(ROWS, COLUMNS));
   const [snake] = useState(new Snake(board, START_ROW, START_COLUMN));
@@ -83,41 +84,40 @@ function SnakeGame({ debug = false } = {}) {
     setSnakeCellNums(new Set(snake.occupiedCellNums));
   }
 
-  function getCellClass(cellNum) {
-    if (snakeCellNums.has(cellNum)) {
-      return 'cell cell--snake';
-    }
-    if (foodCellNums.has(cellNum)) {
-      return 'cell cell--food';
-    }
-
-    return 'cell';
-  }
-
   return (
-    <div id="snake-game" {...swipeableHandlers}>
-      <h1>Snake</h1>
-
-      {debug && <button onClick={moveSnake}>Step</button>}
-
-      <div className="snake-game__board">
-        {board.cells.map((row, i) => (
-          <div key={i} className="row">
-            {row.map((cellNum, j) => (
-              <div key={j} className={getCellClass(cellNum)}>
-                {debug && cellNum}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
-
-      {isGameOver && (
-        <button className="snake-game__btn" onClick={startOver}>Try Again</button>
-      )}
-
-    </div>
+    <>
+      <main {...swipeableHandlers}>
+        <h1>Snake</h1>
+        <div className="snake-game__board">
+          {board.cells.map((row, i) => (
+            <div key={i} className="row">
+              {row.map((cellNum, j) => (
+                <div key={j} className={'cell'}>
+                  {snakeCellNums.has(cellNum) && <SnakeGame.SnakeCell key={cellNum}/>}
+                  {foodCellNums.has(cellNum) && <SnakeGame.FoodCell/>}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+        {isGameOver && (
+          <button className="snake-game__btn" onClick={startOver}>Try Again</button>
+        )}
+      </main>
+      <footer>
+        <a href="https://www.vecteezy.com/free-vector/fruit-icon">Fruit Icon Vectors by Vecteezy</a>
+      </footer>
+    </>
   );
 }
+
+SnakeGame.FoodCell = ({ cellNum }) => {
+  return (
+    <div className="cell">
+      <FruitIcon key={cellNum} name={FruitIcon.Type.APPLE}/>
+    </div>
+  );
+};
+SnakeGame.SnakeCell = ({ cellNum }) => <div key={cellNum} className="cell cell--snake"/>;
 
 export default SnakeGame;

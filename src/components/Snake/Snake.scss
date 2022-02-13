@@ -1,12 +1,10 @@
-#snake-game {
+main {
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  flex: 1;
-
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     margin: 2rem;
   }
 
@@ -19,20 +17,11 @@
     }
 
     .cell {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 2em;
-      width: 2em;
-
-      &.cell--food {
-        background: orangered;
-        color: #202124;
-      }
+      height: 2rem;
+      width: 2rem;
 
       &.cell--snake {
         background: lime;
-        color: #202124;
       }
     }
   }
@@ -45,5 +34,19 @@
     padding: 8px;
     font-size: 1.5rem;
     color: lime;
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+
+  a {
+    border-radius: 2px;
+    padding: 1px 4px;
+    background: #bababa;
+    font-size: 6px;
   }
 }

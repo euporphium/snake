@@ -10,12 +10,10 @@ function App() {
       <header>
         <Link to="/">Games</Link>
       </header>
-      <main>
-        <Routes>
-          <Route path="/" element={<Home/>}/>
-          <Route path="/snake" element={<SnakeGame/>}/>
-        </Routes>
-      </main>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/snake" element={<SnakeGame/>}/>
+      </Routes>
     </div>
   );
 }
