@@ -14,26 +14,17 @@ export default class Snake {
   #wrappedMode;
 
   constructor(board, startRow, startCol, wrappedMode = true) {
-    const node = new Node({
-      row: startRow,
-      col: startCol,
-      cellNum: board.getCellNum(startRow, startCol),
-    });
-
-    this.#head = node;
-    this.#tail = node;
     this.#board = board;
-    this.#occupiedCellNums = new Set([node.value.cellNum]);
-    this.#direction = Snake.Direction.Right;
     this.#wrappedMode = wrappedMode;
-  }
-
-  changeDirection(newDirection) {
-    this.#direction = newDirection;
+    this.#initSnake(startRow, startCol);
   }
 
   get occupiedCellNums() {
     return this.#occupiedCellNums;
+  }
+
+  changeDirection(newDirection) {
+    this.#direction = newDirection;
   }
 
   move(moveTo) {
@@ -43,6 +34,21 @@ export default class Snake {
     if (tgtCellNum) {
       this.#updateSnake({ tgtRow, tgtCol, tgtCellNum }, grow);
     }
+  }
+
+  reset = (startRow, startCol) => this.#initSnake(startRow, startCol);
+
+  #initSnake = (startRow, startCol) => {
+    const node = new Node({
+      row: startRow,
+      col: startCol,
+      cellNum: this.#board.getCellNum(startRow, startCol),
+    });
+
+    this.#head = node;
+    this.#tail = node;
+    this.#occupiedCellNums = new Set([node.value.cellNum]);
+    this.#direction = Snake.Direction.Right;
   }
 
   #updateSnake = ({ tgtRow, tgtCol, tgtCellNum }, grow) => {

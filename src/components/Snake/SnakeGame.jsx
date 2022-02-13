@@ -17,7 +17,7 @@ function SnakeGame({ debug = false } = {}) {
 
   const [foodCellNums, setFoodCellNums] = useState(new Set([rand.next().value]));
   const [snakeCellNums, setSnakeCellNums] = useState(snake.occupiedCellNums);
-  const [isRunning, setIsRunning] = useState(true);
+  const [isGameOver, setIsGameOver] = useState(false);
 
   const swipeableHandlers = useSwipeable({
     onSwipedUp: () => snake.changeDirection(Snake.Direction.Up),
@@ -25,7 +25,7 @@ function SnakeGame({ debug = false } = {}) {
     onSwipedDown: () => snake.changeDirection(Snake.Direction.Down),
     onSwipedLeft: () => snake.changeDirection(Snake.Direction.Left),
     preventDefaultTouchmoveEvent: true,
-  })
+  });
 
   const handleKeydown = e => {
     const getDirectionFromKey = key => {
@@ -48,10 +48,15 @@ function SnakeGame({ debug = false } = {}) {
 
   useInterval(() => {
     moveSnake();
-  }, isRunning ? (1000 / FPS) : null);
+  }, isGameOver ? null : (1000 / FPS));
 
   function endGame() {
-    setIsRunning(false);
+    setIsGameOver(true);
+  }
+
+  function startOver() {
+    snake.reset(START_ROW, START_COLUMN);
+    setIsGameOver(false);
   }
 
   function moveSnake() {
@@ -92,7 +97,9 @@ function SnakeGame({ debug = false } = {}) {
   return (
     <div id="snake-game" {...swipeableHandlers}>
       <h1>Snake</h1>
+
       {debug && <button onClick={moveSnake}>Step</button>}
+
       <div className="snake-game__board">
         {board.cells.map((row, i) => (
           <div key={i} className="row">
@@ -104,6 +111,11 @@ function SnakeGame({ debug = false } = {}) {
           </div>
         ))}
       </div>
+
+      {isGameOver && (
+        <button className="snake-game__btn" onClick={startOver}>Try Again</button>
+      )}
+
     </div>
   );
 }

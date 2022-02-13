@@ -6,8 +6,8 @@
   flex: 1;
 
   h1 {
-    font-size: 3em;
-    margin: 0.5em;
+    font-size: 3rem;
+    margin: 2rem;
   }
 
   .snake-game__board {
@@ -35,5 +35,15 @@
         color: #202124;
       }
     }
+  }
+
+  .snake-game__btn {
+    margin: 2em;
+    background-color: inherit;
+    border: 2px solid lime;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 1.5rem;
+    color: lime;
   }
 }
