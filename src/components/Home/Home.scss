@@ -1,0 +1,15 @@
+.home-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  h1 {
+    margin: 3rem 0 1rem;
+    font-size: 2rem;
+  }
+
+  nav ul li {
+    font-size: 1.5rem;
+    margin: 1rem;
+  }
+}

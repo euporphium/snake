@@ -1,43 +1,22 @@
-$font-color: #bababa;
-
 body {
   background: #202124;
+  color: #bababa;
 }
 
 .app-container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  color: $font-color;
-  font-size: calc(10px + 1vmin);
-
   header {
     border-bottom: 1px solid lime;
-    display: flex;
-    justify-content: space-between;
-    padding: 1em 2em;
+    padding: 1rem;
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
 
-    span {
-      font-size: 2em;
-      font-weight: 700;
-    }
+    a {
+      text-decoration: none;
 
-    ul {
-      height: 100%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 2em;
-
-      a {
+      &:visited {
         color: inherit;
       }
     }
   }
-
-  main {
-    display: flex;
-    flex: 1;
-  }
 }
-

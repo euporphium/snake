@@ -1,5 +1,6 @@
 import React from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
+import Home from './components/Home/Home';
 import SnakeGame from './components/Snake/SnakeGame';
 import './App.scss';
 
@@ -7,17 +8,11 @@ function App() {
   return (
     <div className="app-container">
       <header>
-        <span>Games</span>
-        <nav>
-          <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/snake">Snake</Link></li>
-          </ul>
-        </nav>
+        <Link to="/">Games</Link>
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<h2>Here be games</h2>}/>
+          <Route path="/" element={<Home/>}/>
           <Route path="/snake" element={<SnakeGame/>}/>
         </Routes>
       </main>
