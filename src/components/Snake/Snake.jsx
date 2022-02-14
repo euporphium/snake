@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
-import FruitIcon from './FruitIcon/FruitIcon';
-import { GameBoard, Snake } from '../../gameLibrary';
+import Fruit from './Fruit/Fruit';
+import { GameBoard, Snake, WeightedRandom } from '../../gameLibrary';
 import { randomNumberGenerator, useInterval } from '../../util';
 import './Snake.scss';
 
@@ -15,10 +15,12 @@ function SnakeGame() {
   const [rand] = useState(randomNumberGenerator(1, ROWS * COLUMNS));
   const [board] = useState(new GameBoard(ROWS, COLUMNS));
   const [snake] = useState(new Snake(board, START_ROW, START_COLUMN));
-
-  const [foodCellNums, setFoodCellNums] = useState(new Set([rand.next().value]));
+  const [fruitRandomizer] = useState(new WeightedRandom(Fruit.Names, Fruit.ProbabilityWeights()));
+  const [fruit, setFruit] = useState(fruitRandomizer.getRandomItem());
+  const [fruitCellNums, setFruitCellNums] = useState(new Set([rand.next().value]));
   const [snakeCellNums, setSnakeCellNums] = useState(snake.occupiedCellNums);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [score, setScore] = useState(0);
 
   const swipeableHandlers = useSwipeable({
     onSwipedUp: () => snake.changeDirection(Snake.Direction.Up),
@@ -74,13 +76,16 @@ function SnakeGame() {
         return {};
       }
 
-      if (foodCellNums.has(tgtCellNum)) {
-        setFoodCellNums(new Set([rand.next().value]));
+      if (fruitCellNums.has(tgtCellNum)) {
+        setScore(prevState => prevState + Fruit.Scores[fruit]);
+        setFruit(fruitRandomizer.getRandomItem());
+        setFruitCellNums(new Set([rand.next().value]));
         return { tgtCellNum, grow: true };
       }
 
       return { tgtCellNum, grow: false };
     });
+
     setSnakeCellNums(new Set(snake.occupiedCellNums));
   }
 
@@ -88,20 +93,21 @@ function SnakeGame() {
     <>
       <main {...swipeableHandlers}>
         <h1>Snake</h1>
-        <div className="snake-game__board">
+        <div className="snake__board">
           {board.cells.map((row, i) => (
             <div key={i} className="row">
               {row.map((cellNum, j) => (
                 <div key={j} className={'cell'}>
-                  {snakeCellNums.has(cellNum) && <SnakeGame.SnakeCell key={cellNum}/>}
-                  {foodCellNums.has(cellNum) && <SnakeGame.FoodCell/>}
+                  {snakeCellNums.has(cellNum) && <SnakeGame.SnakeCell/>}
+                  {fruitCellNums.has(cellNum) && <Fruit.Memoized name={fruit}/>}
                 </div>
               ))}
             </div>
           ))}
         </div>
+        <div className="snake__score">Score: {score}</div>
         {isGameOver && (
-          <button className="snake-game__btn" onClick={startOver}>Try Again</button>
+          <button className="snake__btn" onClick={startOver}>Try Again</button>
         )}
       </main>
       <footer>
@@ -111,13 +117,6 @@ function SnakeGame() {
   );
 }
 
-SnakeGame.FoodCell = ({ cellNum }) => {
-  return (
-    <div className="cell">
-      <FruitIcon key={cellNum} name={FruitIcon.Type.APPLE}/>
-    </div>
-  );
-};
-SnakeGame.SnakeCell = ({ cellNum }) => <div key={cellNum} className="cell cell--snake"/>;
+SnakeGame.SnakeCell = () => <div className="cell cell--snake"/>;
 
 export default SnakeGame;
